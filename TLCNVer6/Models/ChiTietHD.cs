@@ -9,7 +9,6 @@ namespace TLCNVer6.Models
     [Table("ChiTietHD")]
     public partial class ChiTietHD
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         public int IDHD { get; set; }
