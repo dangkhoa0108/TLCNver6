@@ -1,0 +1,68 @@
+﻿@model TLCNVer6.Models.Kho
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa fa-database"></i> <a href="#">
+                Dữ liệu
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Xóa kho
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Xóa
+                    kho
+                </div>
+                <div class="center"><h3>Bạn có muốn xóa?</h3></div>
+                <div>
+                    <div class="panel-body center">
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>@Html.DisplayNameFor(model => model.MaKho)</dt>
+                                <dd>@Html.DisplayFor(model => model.MaKho)</dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.LoaiKho.TenLoaiKho)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.LoaiKho.TenLoaiKho)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TenKho)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TenKho)
+                                </dd>
+
+                            </dl>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <a>
+                                    <input class="btn btn-primary center" type="submit" value="Xóa" />
+                                    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-success " })
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

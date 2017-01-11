@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TLCNVer6.Models.LoaiMatHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa fa-database"></i> <a href="#">
+                Dữ liệu
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Quản lý loại mặt hàng
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12"></div>
+                <!-- /.span -->
+            </div>
+            <!-- /.row -->
+            <div class="hr hr-18 dotted hr-double"></div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="header smaller lighter blue">
+                        Quản lý loại mặt hàng
+                    </h3>
+
+                    <div class="clearfix">
+                        <div class="pull-right tableTools-container"></div>
+                    </div>
+                    <div class="table-header">Danh sách loại mặt hàng</div>
+
+                    <!-- div.table-responsive -->
+                    <!-- div.dataTables_borderWrap -->
+                    <div>
+                        <table id="dynamic-table"
+                               class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Mã loại mặt hàng</th>
+                                    <th>Tên loại mặt hàng</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MaLoaiMH</td>
+                                        <td>@item.TenLoaiMH</td>
+                                        <td>
+                                            <div class="hidden-sm hidden-xs btn-group">
+                                                @Html.ActionLink(" ", "Edit", new { id = item.MaLoaiMH }, new { @class = "btn btn-xs btn-info ace-icon fa fa-pencil bigger-120" })
+
+                                                @Html.ActionLink(" ", "Delete", new { id = item.MaLoaiMH }, new { @class = "btn btn-xs btn-danger ace-icon fa fa-trash-o bigger-120" })
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-xs btn-success ace-icon fa fa-plus-circle" })
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>

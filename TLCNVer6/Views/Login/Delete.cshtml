@@ -1,0 +1,99 @@
+﻿@model TLCNVer6.Models.Login
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa-desktop"></i> <a href="#">
+                Hệ thống
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Xóa Tài khoản
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Xóa
+                    Người Dùng
+                </div>
+                <div class="center"><h3>Bạn có muốn xóa?</h3></div>
+                <div>
+                    <div class="panel-body center">
+                        <div class="form-group">
+                            <dl class="dl-horizontal">
+                                <dt>@Html.DisplayNameFor(model => model.ID)</dt>
+                                <dd>@Html.DisplayFor(model => model.ID)</dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Username)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Username)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Password)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Role)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Role)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.HoTen)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.HoTen)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DiaChi)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DiaChi)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SoDT)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SoDT)
+                                </dd>
+
+                            </dl>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <a>
+                                    <input class="btn btn-primary center" type="submit" value="Xóa" />
+                                    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-success " })
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

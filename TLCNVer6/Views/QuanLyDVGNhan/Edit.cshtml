@@ -1,0 +1,57 @@
+﻿@model TLCNVer6.Models.DonViGiaoNhan
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa fa-database"></i> <a href="#">
+                Dữ liệu
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Chỉnh sửa đơn vị giao nhận
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
+                    Đơn vị Giao Nhận
+                </div>
+
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="panel-body">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.HiddenFor(model => model.MaDV)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TenDV, "Tên đơn vị")
+                            @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <a>
+                            <input class="btn btn-primary " type="submit" value="Sửa" />
+                            @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-success " })
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

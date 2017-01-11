@@ -1,0 +1,27 @@
+﻿@model TLCNVer6.Models.LoaiMatHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoaiMatHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoaiMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoaiMH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLoaiMH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

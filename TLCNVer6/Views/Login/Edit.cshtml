@@ -1,0 +1,110 @@
+﻿@model TLCNVer6.Models.Login
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa-desktop"></i> <a href="#">
+                Hệ thống
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Sửa Tài khoản
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
+                    Thông Tin Người Dùng
+                </div>
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="panel-body">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.Username)
+                        @Html.HiddenFor(model => model.Password)
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.Password, "Password")
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Role, "Nhóm", new { htmlAttributes = new { @class = "form-control" } })
+
+                            @{
+                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = "Admin",
+                                    Value = "Admin"
+                                });
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = "Ban Tài Chính",
+                                    Value = "Ban Tài Chính",
+                                    //Selected = true
+                                });
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = "Ban Kế Hoạch",
+                                    Value = "Ban Kế Hoạch"
+                                });
+
+                            }
+
+                            @Html.DropDownListFor(model => model.Role, listItems, "-- Chọn Nhóm Quyền --", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HoTen, "Họ tên")
+
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaChi, "Địa chỉ")
+
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SoDT, "Số Điện Thoại")
+
+                            @Html.EditorFor(model => model.SoDT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SoDT, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <a class="form-group">
+                            <input class="btn btn-primary " type="submit" value="Sửa" />
+                            @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-success " })
+                        </a>
+                    </div>
+                                }
+
+            </div>
+        </div>
+    </div>
+</div>

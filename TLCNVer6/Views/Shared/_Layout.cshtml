@@ -141,7 +141,7 @@
 
                     <ul class="submenu">
                         <li class="">
-                            @Html.ActionLink("Danh mục phiếu nhập", "Index", "QuanLyPhieuNhap")
+                            @Html.ActionLink("Danh mục phiếu nhập", "Index", "ThongTinPhieuNhap")
                             <b class="arrow"></b>
                         </li>
 
@@ -172,12 +172,12 @@
                         </li>
 
                         <li class="">
-                            @Html.ActionLink("Danh mục lô hàng", "Index", "LoHang")
+                            @Html.ActionLink("Danh mục loại mặt hàng", "Index", "QuanLyLoaiMatHang")
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            @Html.ActionLink("Danh mục mặc hàng", "Index", "MatHang")
+                            @Html.ActionLink("Danh mục mặt hàng", "Index", "QuanLyMatHang")
                             <b class="arrow"></b>
                         </li>
 
@@ -306,7 +306,7 @@
                                     <button class="btn btn-sm btn-danger">
                                         <i class="ace-icon fa fa-times"></i> Có
                                     </button>*@
-                                @Html.ActionLink("Có", "Logout", new { controller = "AdminLogin" },
+                                @Html.ActionLink("Có", "Logout", new { controller = "Login" },
                                new { @class = "btn btn-sm btn-danger ace-icon fa fa-times" })
 
 
@@ -336,7 +336,7 @@
                         <span class="blue bolder">
                             Hệ
                             thống
-                        </span> Quản lý kho &copy; 2013-2016
+                        </span> Quản lý kho &copy; 2013-2017
                     </span> &nbsp; &nbsp;
                 </div>
             </div>
