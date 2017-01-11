@@ -1,0 +1,338 @@
+﻿@model Tuple<TLCNVer6.Models.ThongTinHopDong, TLCNVer6.Models.ChiTietHD>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Thêm hợp đồng</h2>
+<div class="container" style="max-width:700px">
+    <div class="master">
+        <table>
+            <tr>
+                <td>Mã hợp đồng &nbsp;</td>
+                <td>
+                    <input type="text" id="MaHD" />
+                    <span class="error">Mã hợp đồng không được để trống</span>
+                </td>
+                <td>Tính chất &nbsp;</td>
+                <td>
+                    @{
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Nhập",
+                            Value = "Nhập"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Xuất",
+                            Value = "Xuất",
+                            //Selected = true
+                        });
+                    }
+                    @Html.DropDownListFor(model => model.Item1.TinhChat, listItems, "-- Chọn tính chất --", new { htmlAttributes = new { @id = "TinhChat" } })
+                    @Html.ValidationMessageFor(model => model.Item1.TinhChat, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>Mã kho &nbsp;</td>
+                <td colspan="3">
+                    @Html.DropDownList("Kho", null, htmlAttributes: new { @id = "MaKho", @style = "height: 26px; margin-bottom: 17px" })
+                    @Html.ValidationMessageFor(model => model.Item1.MaKho, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>Mã đơn vị &nbsp;</td>
+                <td>
+                    @Html.DropDownList("DonViGN", null, htmlAttributes: new { @id = "MaDV", @style = "height: 26px; margin-bottom: 17px" })
+                    @Html.ValidationMessageFor(model => model.Item1.MaDV, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>Ngày kí &nbsp;</td>
+                <td colspan="3">
+                    <input id="NgayKi" style="width:100%">
+                    <span class="error">Ngày kí không được trống</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Người lập &nbsp;</td>
+                <td>
+                    <input id="NguoiLap" style="width:100%">
+                    <span class="error">Người lập không được trống</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="details">
+        <h4>Chi tiết phiếu xuất</h4>
+        <table width="100%">
+            <tr>
+                <td>Tên mặt hàng</td>
+                <td>Số lượng</td>
+                <td>Đơn giá</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    @*<input type="text" id="MaMatHang" />*@
+
+                    @Html.DropDownList("MatHang", null, htmlAttributes: new { @id = "MaMatHang", @style = "height: 26px" })
+                    @Html.ValidationMessageFor(model => model.Item2.MaMatHang, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    <input type="text" id="SoLuong" />
+                    <span class="error">Số lượng không được trống</span>
+                </td>
+                <td>
+                    <input type="text" id="DonGia" />
+                    <span class="error">Đơn giá không được trống</span>
+                </td>
+                <td>
+                    <input type="button" id="add" value="add" />
+                </td>
+            </tr>
+        </table>
+        <div id="orderItems" class="tablecontainer">
+
+        </div>
+        <div style="padding:10px 0px; text-align:right">
+            <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+
+
+
+<link rel="stylesheet" href="~/Content/jquery-ui.css">
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">*@
+@section Scripts{
+    <script src="~/Scripts/jquery-ui.js"></script>
+    @*<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+    <script>
+        //Date Picker
+        $(function () {
+            $('#NgayKi').datepicker({
+                dateFormat: 'mm-dd-yy'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var orderItems = [];
+            //Add button click function
+            $('#add').click(function () {
+                //Check validation of order item
+                var isValidItem = true;
+                if ($('#MaMatHang').val().trim() == '') {
+                    isValidItem = false;
+                    $('#MaMatHang').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#MaMatHang').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#SoLuong').val().trim() != '' && !isNaN($('#SoLuong').val().trim()))) {
+                    isValidItem = false;
+                    $('#SoLuong').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#SoLuong').siblings('span.error').css('visibility', 'hidden');
+                }
+                if (!($('#DonGia').val().trim() != '' && !isNaN($('#DonGia').val().trim()))) {
+                    isValidItem = false;
+                    $('#DonGia').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#DonGia').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Add item to list if valid
+                if (isValidItem) {
+                    orderItems.push({
+                        MaMatHang: $('#MaMatHang').val().trim(),
+                        SoLuong: parseInt($('#SoLuong').val().trim()),
+                        DonGia: parseFloat($('#DonGia').val().trim()),
+                        Sum: parseInt($('#SoLuong').val().trim()) * parseFloat($('#DonGia').val().trim())
+                    });
+
+                    //Clear fields
+                    $('#MaMatHang').val('').focus();
+                    $('#SoLuong, #DonGia').val('');
+
+                }
+                //populate order items
+                GeneratedItemsTable();
+
+            });
+            //Save button click function
+            $('#submit').click(function () {
+                //validation of order
+                var isAllValid = true;
+                if (orderItems.length == 0) {
+                    $('#orderItems').html('<span style="color:red;">Vui lòng nhập phiếu</span>');
+                    isAllValid = false;
+                }
+
+                if ($('#MaHD').val().trim() == '') {
+                    $('#MaHD').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#MaHD').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#MaKho').val().trim() == '') {
+                    $('#MaKho').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#MaKho').siblings('span.error').css('visibility', 'hidden');
+                }
+                if ($('#MaDV').val().trim() == '') {
+                    $('#MaDV').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#MaDV').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#NgayKi').val().trim() == '') {
+                    $('#NgayKi').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#NgayKi').siblings('span.error').css('visibility', 'hidden');
+                }
+                if ($('#NguoiLap').val().trim() == '') {
+                    $('#NguoiLap').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#NguoiLap').siblings('span.error').css('visibility', 'hidden');
+                }
+                //Save if valid
+                if (isAllValid) {
+                    var data = {
+                        MaHD: $('#MaHD').val().trim(),
+                        TinhChat: $('#TinhChat').val(),
+                        MaKho: $('#MaKho').val().trim(),
+                        MaDV: $('#MaDV').val().trim(),
+                        NgayKi: $('#NgayKi').val().trim(),
+                        NguoiLap: $('#NguoiLap').val().trim(),
+                        //Sorry forgot to add Description Field
+                        ChiTietHD: orderItems
+                    }
+
+                    $(this).val('Please wait...');
+
+                    $.ajax({
+                        url: '/QuanLyHopDong/SaveOrder',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Successfully done.');
+                                //clear form
+                                orderItems = [];
+                                $('#MaHD').val('');
+                                $('#TinhChat').val('');
+                                $('#MaKho').val('');
+                                $('#MaDV').val('');
+                                $('#NgayKi').val('');
+                                $('#NguoiLap').val('');
+                                $('#orderItems').empty();
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#submit').val('Save');
+                        },
+                        error: function () {
+                            alert('Lỗi. Xin thử lại');
+                            $('#submit').val('Save');
+                        }
+                    });
+                }
+
+            });
+            //function for show added items in table
+            function GeneratedItemsTable() {
+                if (orderItems.length > 0) {
+                    var $table = $('<table/>');
+                    $table.append('<thead><tr><th>MaMH</th><th>SL</th><th>DonGia</th><th>Sum</th><th></th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(orderItems, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.MaMatHang));
+                        $row.append($('<td/>').html(val.SoLuong));
+                        $row.append($('<td/>').html(val.DonGia));
+                        $row.append($('<td/>').html(val.Sum));
+                        var $remove = $('<a href="#">Remove</a>');
+                        $remove.click(function (e) {
+                            e.preventDefault();
+                            orderItems.splice(i, 1);
+                            GeneratedItemsTable();
+                        });
+                        $row.append($('<td/>').html($remove));
+                        $tbody.append($row);
+                    });
+                    console.log("current", orderItems);
+                    $table.append($tbody);
+                    $('#orderItems').html($table);
+                }
+                else {
+                    $('#orderItems').html('');
+                }
+            }
+        });
+
+    </script>
+}
+
+<style>
+    /*Adding some css for looks good*/
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+
+    /*css for table*/
+    .container td {
+        vertical-align: top;
+    }
+
+    .tablecontainer table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid #BFAEAE;
+        border-right: 1px solid #BFAEAE;
+    }
+
+    .tablecontainer th {
+        border-bottom: 2px solid #BFAEAE !important;
+    }
+
+    .tablecontainer th, .tablecontainer td {
+        text-align: left;
+        border-left: 1px solid #BFAEAE;
+        padding: 5px;
+        border-bottom: 1px solid #BFAEAE;
+    }
+
+    .ui-widget {
+        font-size: 12px !important;
+    }
+</style>
+
+
+
+
+
