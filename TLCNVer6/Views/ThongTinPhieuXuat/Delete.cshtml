@@ -1,4 +1,4 @@
-﻿@model TLCNVer6.Models.ThongTinPN
+﻿@model TLCNVer6.Models.ThongTinPX
 
 @{
     ViewBag.Title = "Delete";
@@ -29,8 +29,8 @@
                 <div>
                     <div class="panel-body center">
                         <dl class="dl-horizontal">
-                            <dt>@Html.DisplayNameFor(model => model.MaPN)</dt>
-                            <dd>@Html.DisplayFor(model => model.MaPN)</dd>
+                            <dt>@Html.DisplayNameFor(model => model.MaPX)</dt>
+                            <dd>@Html.DisplayFor(model => model.MaPX)</dd>
                             <dt>
                                 @Html.DisplayNameFor(model => model.NgayLap)
                             </dt>
@@ -56,11 +56,11 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.MaDonVi)
+                                @Html.DisplayNameFor(model => model.MaKho)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.MaDonVi)
+                                @Html.DisplayFor(model => model.MaKho)
                             </dd>
 
                         </dl>
@@ -71,7 +71,7 @@
 
                             <a>
                                 <input class="btn btn-primary center" type="submit" value="Xóa" />
-                                @Html.ActionLink("Trở về", "Index", "ThongTinPhieuNhap", null, new { @class = "btn btn-success " })
+                                @Html.ActionLink("Trở về", "Index", "ThongTinPhieuXuat", null, new { @class = "btn btn-success " })
                             </a>
                         }
                     </div>

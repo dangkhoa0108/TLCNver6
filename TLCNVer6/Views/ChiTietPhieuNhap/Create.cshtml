@@ -36,7 +36,7 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.MaMatHang, "Tên loại mặt hàng")
+                            @Html.LabelFor(model => model.MaMatHang, "Tên mặt hàng")
 
                             @Html.DropDownList("MaMatHang", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.MaMatHang, "", new { @class = "text-danger" })
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.SoLuong, "Tên mặt hàng")
+                            @Html.LabelFor(model => model.SoLuong, "Số lượng")
 
                             @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DonGia, "Tên mặt hàng")
+                            @Html.LabelFor(model => model.DonGia, "Đơn giá")
 
                             @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Sum, "Tên mặt hàng")
+                            @Html.LabelFor(model => model.Sum, "Tổng")
 
                             @Html.EditorFor(model => model.Sum, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Sum, "", new { @class = "text-danger" })

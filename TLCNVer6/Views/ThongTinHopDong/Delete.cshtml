@@ -1,4 +1,4 @@
-﻿@model TLCNVer6.Models.ThongTinPN
+﻿@model TLCNVer6.Models.ThongTinHopDong
 
 @{
     ViewBag.Title = "Delete";
@@ -14,7 +14,7 @@
 
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Xóa phiếu nhập
+                Xóa hợp đồng
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -29,38 +29,38 @@
                 <div>
                     <div class="panel-body center">
                         <dl class="dl-horizontal">
-                            <dt>@Html.DisplayNameFor(model => model.MaPN)</dt>
-                            <dd>@Html.DisplayFor(model => model.MaPN)</dd>
+                            <dt>@Html.DisplayNameFor(model => model.MaHD)</dt>
+                            <dd>@Html.DisplayFor(model => model.MaHD)</dd>
                             <dt>
-                                @Html.DisplayNameFor(model => model.NgayLap)
+                                @Html.DisplayNameFor(model => model.TinhChat)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.NgayLap)
+                                @Html.DisplayFor(model => model.TinhChat)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.GiaTriDen)
+                                @Html.DisplayNameFor(model => model.MaKho)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.GiaTriDen)
+                                @Html.DisplayFor(model => model.MaKho)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.NguoiLap)
+                                @Html.DisplayNameFor(model => model.MaDV)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.NguoiLap)
+                                @Html.DisplayFor(model => model.MaDV)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.MaDonVi)
+                                @Html.DisplayNameFor(model => model.NgayKi)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.MaDonVi)
+                                @Html.DisplayFor(model => model.NgayKi)
                             </dd>
 
                         </dl>
@@ -71,7 +71,7 @@
 
                             <a>
                                 <input class="btn btn-primary center" type="submit" value="Xóa" />
-                                @Html.ActionLink("Trở về", "Index", "ThongTinPhieuNhap", null, new { @class = "btn btn-success " })
+                                @Html.ActionLink("Trở về", "Index", "ThongTinHopDong", null, new { @class = "btn btn-success " })
                             </a>
                         }
                     </div>

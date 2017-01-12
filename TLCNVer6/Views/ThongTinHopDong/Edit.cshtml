@@ -1,4 +1,4 @@
-﻿@model TLCNVer6.Models.ChiTietPN
+﻿@model TLCNVer6.Models.ThongTinHopDong
 
 @{
     ViewBag.Title = "Edit";
@@ -14,7 +14,7 @@
 
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Chỉnh sửa sản phẩm trong phiếu
+                Chỉnh sửa thông tin hợp đồng
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -24,7 +24,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Sửa
-                    Mặt hàng
+                    thông tin hợp đồng
                 </div>
                 @using (Html.BeginForm())
             {
@@ -34,44 +34,37 @@
                     <div class="panel-body">
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.IDPN)
+                        @Html.HiddenFor(model => model.MaHD)
+                        @Html.HiddenFor(model => model.NguoiLap)
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.MaMatHang, "Tên mặt hàng")
-
-                            @Html.DropDownList("MaMatHang", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.MaMatHang, "", new { @class = "text-danger" })
-
+                            @Html.LabelFor(model => model.TinhChat, "Tính chất")
+                            @Html.EditorFor(model => model.TinhChat, new { htmlAttributes = new { @class = "form-control"} })
+                            @Html.ValidationMessageFor(model => model.TinhChat, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MaKho, "Tên kho")
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaKho, "Mã kho")
                             @Html.DropDownList("MaKho", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.MaKho, "", new { @class = "text-danger" })
-
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.SoLuong, "Số lượng")
-
-                            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
-
+                            @Html.LabelFor(model => model.MaDV, "Mã đơn vị")
+                            @Html.DropDownList("MaDV", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaDV, "", new { @class = "text-danger" })
                         </div>
 
-
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DonGia, "Đơn giá")
-
-                            @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
-
+                            @Html.LabelFor(model => model.NgayKi, "Ngày kí")
+                            @Html.EditorFor(model => model.NgayKi, new { htmlAttributes = new { @class = "form-control", @type="date" } })
+                            @Html.ValidationMessageFor(model => model.NgayKi, "", new { @class = "text-danger" })
                         </div>
 
                         <a>
                             <input class="btn btn-primary " type="submit" value="Sửa" />
-                            @Html.ActionLink("Trở về", "Index", "ThongTinPhieuNhap", null, new { @class = "btn btn-success " })
+                            @Html.ActionLink("Trở về", "Index", "ThongTinHopDong", null, new { @class = "btn btn-success " })
                         </a>
                     </div>
                 }
@@ -80,4 +73,4 @@
 
         </div>
     </div>
-</div> 
+</div>

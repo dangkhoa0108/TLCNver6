@@ -1,0 +1,75 @@
+﻿@model TLCNVer6.Models.ThongTinHopDong
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThongTinHopDong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DonViGiaoNhan.TenDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonViGiaoNhan.TenDV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonViGiaoNhan1.TenDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonViGiaoNhan1.TenDV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kho.TenKho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kho.TenKho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhChat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhChat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

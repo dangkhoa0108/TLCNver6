@@ -1,4 +1,4 @@
-﻿@model TLCNVer6.Models.ThongTinPN
+﻿@model TLCNVer6.Models.ThongTinPX
 
 @{
     ViewBag.Title = "Edit";
@@ -14,7 +14,7 @@
 
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Chỉnh sửa thông tin phiếu nhập
+                Chỉnh sửa thông tin phiếu xuất
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -24,7 +24,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Sửa
-                    thông tin phiếu nhập
+                    thông tin phiếu xuất
                 </div>
                 @using (Html.BeginForm())
             {
@@ -34,8 +34,8 @@
                     <div class="panel-body">
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.MaPN)
-                        @Html.HiddenFor(model=>model.NguoiLap)
+                        @Html.HiddenFor(model => model.MaPX)
+                        @Html.HiddenFor(model => model.NguoiLap)
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgayLap, "Ngày lập")
@@ -51,16 +51,16 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.MaDonVi, "Mã đơn vị")
+                            @Html.LabelFor(model => model.MaKho, "Mã kho")
 
-                            @Html.DropDownList("MaDonVi", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.MaDonVi, "", new { @class = "text-danger" })
+                            @Html.DropDownList("MaKho", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaKho, "", new { @class = "text-danger" })
 
                         </div>
 
                         <a>
                             <input class="btn btn-primary " type="submit" value="Sửa" />
-                            @Html.ActionLink("Trở về", "Index", "ThongTinPhieuNhap", null, new { @class = "btn btn-success " })
+                            @Html.ActionLink("Trở về", "Index", "ThongTinPhieuXuat", null, new { @class = "btn btn-success " })
                         </a>
                     </div>
                 }

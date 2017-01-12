@@ -1,4 +1,4 @@
-﻿@model TLCNVer6.Models.ThongTinPN
+﻿@model TLCNVer6.Models.ChiTietPX
 
 @{
     ViewBag.Title = "Delete";
@@ -14,7 +14,7 @@
 
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Xóa phiếu nhập
+                Xóa mặt hàng trong phiếu
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -23,44 +23,52 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Xóa
-                    phiếu nhập
+                    Mặt hàng trong phiếu
                 </div>
                 <div class="center"><h3>Bạn có muốn xóa?</h3></div>
                 <div>
                     <div class="panel-body center">
                         <dl class="dl-horizontal">
-                            <dt>@Html.DisplayNameFor(model => model.MaPN)</dt>
-                            <dd>@Html.DisplayFor(model => model.MaPN)</dd>
+                            <dt>@Html.DisplayNameFor(model => model.IDPX)</dt>
+                            <dd>@Html.DisplayFor(model => model.IDPX)</dd>
                             <dt>
-                                @Html.DisplayNameFor(model => model.NgayLap)
+                                @Html.DisplayNameFor(model => model.MaMatHang)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.NgayLap)
+                                @Html.DisplayFor(model => model.MaMatHang)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.GiaTriDen)
+                                @Html.DisplayNameFor(model => model.MaDV)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.GiaTriDen)
+                                @Html.DisplayFor(model => model.MaDV)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.NguoiLap)
+                                @Html.DisplayNameFor(model => model.SoLuong)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.NguoiLap)
+                                @Html.DisplayFor(model => model.SoLuong)
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.MaDonVi)
+                                @Html.DisplayNameFor(model => model.DonGia)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.MaDonVi)
+                                @Html.DisplayFor(model => model.DonGia)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sum)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Sum)
                             </dd>
 
                         </dl>
@@ -71,7 +79,7 @@
 
                             <a>
                                 <input class="btn btn-primary center" type="submit" value="Xóa" />
-                                @Html.ActionLink("Trở về", "Index", "ThongTinPhieuNhap", null, new { @class = "btn btn-success " })
+                                @Html.ActionLink("Trở về", "Index", "ThongTinPhieuXuat", null, new { @class = "btn btn-success " })
                             </a>
                         }
                     </div>

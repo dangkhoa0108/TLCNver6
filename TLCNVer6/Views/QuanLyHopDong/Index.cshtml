@@ -16,22 +16,8 @@
                 </td>
                 <td>Tính chất &nbsp;</td>
                 <td>
-                    @{
-                        List<SelectListItem> listItems = new List<SelectListItem>();
-                        listItems.Add(new SelectListItem
-                        {
-                            Text = "Nhập",
-                            Value = "Nhập"
-                        });
-                        listItems.Add(new SelectListItem
-                        {
-                            Text = "Xuất",
-                            Value = "Xuất",
-                            //Selected = true
-                        });
-                    }
-                    @Html.DropDownListFor(model => model.Item1.TinhChat, listItems, "-- Chọn tính chất --", new { htmlAttributes = new { @id = "TinhChat" } })
-                    @Html.ValidationMessageFor(model => model.Item1.TinhChat, "", new { @class = "text-danger" })
+                    <input type="text" id="TinhChat" />
+                    <span class="error">Tính chất không được để trống</span>
                 </td>
             </tr>
             <tr>
@@ -215,7 +201,7 @@
                 if (isAllValid) {
                     var data = {
                         MaHD: $('#MaHD').val().trim(),
-                        TinhChat: $('#TinhChat').val(),
+                        TinhChat: $('#TinhChat').val().trim(),
                         MaKho: $('#MaKho').val().trim(),
                         MaDV: $('#MaDV').val().trim(),
                         NgayKi: $('#NgayKi').val().trim(),

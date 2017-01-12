@@ -196,7 +196,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChiTietHopDongController.cs" />
     <Compile Include="Controllers\ChiTietPhieuNhapController.cs" />
+    <Compile Include="Controllers\ChiTietPhieuXuatController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\QuanLyDVGNhanController.cs" />
     <Compile Include="Controllers\QuanLyHopDongController.cs" />
@@ -206,7 +208,9 @@
     <Compile Include="Controllers\QuanLyMatHangController.cs" />
     <Compile Include="Controllers\QuanLyPhieuNhapController.cs" />
     <Compile Include="Controllers\QuanLyPhieuXuatController.cs" />
+    <Compile Include="Controllers\ThongTinHopDongController.cs" />
     <Compile Include="Controllers\ThongTinPhieuNhapController.cs" />
+    <Compile Include="Controllers\ThongTinPhieuXuatController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,7 +231,9 @@
     <Compile Include="Models\ThongTinPX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ChiTietHopDongViewModel.cs" />
     <Compile Include="ViewModel\ChiTietPhieuNhapViewModel.cs" />
+    <Compile Include="ViewModel\ChiTietPhieuXuatViewModel.cs" />
     <Compile Include="ViewModel\HopDongViewModel.cs" />
     <Compile Include="ViewModel\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModel\PhieuXuatViewModel.cs" />
@@ -333,6 +339,26 @@
     <Content Include="Views\ChiTietPhieuNhap\Details.cshtml" />
     <Content Include="Views\ChiTietPhieuNhap\Edit.cshtml" />
     <Content Include="Views\ChiTietPhieuNhap\Index.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Create.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Delete.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Details.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Edit.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Index.cshtml" />
+    <Content Include="Views\ChiTietPhieuXuat\Create.cshtml" />
+    <Content Include="Views\ChiTietPhieuXuat\Delete.cshtml" />
+    <Content Include="Views\ChiTietPhieuXuat\Details.cshtml" />
+    <Content Include="Views\ChiTietPhieuXuat\Edit.cshtml" />
+    <Content Include="Views\ChiTietPhieuXuat\Index.cshtml" />
+    <Content Include="Views\ThongTinHopDong\Create.cshtml" />
+    <Content Include="Views\ThongTinHopDong\Delete.cshtml" />
+    <Content Include="Views\ThongTinHopDong\Details.cshtml" />
+    <Content Include="Views\ThongTinHopDong\Edit.cshtml" />
+    <Content Include="Views\ThongTinHopDong\Index.cshtml" />
+    <Content Include="Views\ChiTietHopDong\Create.cshtml" />
+    <Content Include="Views\ChiTietHopDong\Delete.cshtml" />
+    <Content Include="Views\ChiTietHopDong\Details.cshtml" />
+    <Content Include="Views\ChiTietHopDong\Edit.cshtml" />
+    <Content Include="Views\ChiTietHopDong\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
