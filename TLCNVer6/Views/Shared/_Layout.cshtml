@@ -135,7 +135,7 @@
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-database"></i> <span class="menu-text">
-                            Dữ Liệu
+                            Quản lý danh mục
                         </span> <b class="arrow fa fa-angle-down"></b>
                     </a> <b class="arrow"></b>
 
@@ -204,74 +204,35 @@
 
                 <li class="">
                     <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon glyphicon glyphicon-usd"></i> <span class="menu-text">Báo Cáo Tài Chính</span> <b class="arrow fa fa-angle-down"></b>
+                        <i class="menu-icon glyphicon glyphicon-usd"></i> <span class="menu-text">Báo Cáo</span> <b class="arrow fa fa-angle-down"></b>
                     </a> <b class="arrow"></b>
 
                     <ul class="submenu">
                         <li class="">
-                            @Html.ActionLink("Báo cáo chi tiết hàng nhập", "LocTheoKho", "QuanLyPhieuNhap")
+                            @Html.ActionLink("Báo cáo phiếu nhập theo đơn vị", "LocTheoDonVi", "ThongTinPhieuNhap")
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            @Html.ActionLink("Báo cáo chi tiết hàng xuất", "LocTheoKho", "QuanLyPhieuXuat")
-                            <b class="arrow"></b>
-                        </li>
-
-                        @*<li class="">
-                                <a href="baocaochitiet.html">
-                                    <i class="menu-icon fa fa-caret-right"></i> Báo Cáo Chi Tiết
-                                </a> <b class="arrow"></b>
-                            </li>*@
-
-                        @*<li class="">
-                                <a href="baocaoketquanhapxuattheodonvi.html">
-                                    <i class="menu-icon fa fa-caret-right"></i> Xuất Nhập Hàng Theo
-                                    Đơn Vị
-                                </a> <b class="arrow"></b>
-                            </li>*@
-
-                        @*<li class="">
-                                <a href="bangkechungtu.html">
-                                    <i class="menu-icon fa fa-caret-right"></i> Kiểm Tra Chứng Từ
-                                </a> <b class="arrow"></b>
-                            </li>*@
-
-                        <li class="">
-                            @Html.ActionLink("Báo cáo hàng tồn kho", "LocTheoKho", "MatHang")
-                            <b class="arrow"></b>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class="">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon glyphicon glyphicon-info-sign"></i> <span class="menu-text">Báo Cáo Kế Hoạch</span> <b class="arrow fa fa-angle-down"></b>
-                    </a> <b class="arrow"></b>
-
-                    <ul class="submenu">
-                        <li class="">
-                            @Html.ActionLink("Báo cáo chi tiết phiếu nhập", "Find", "QuanLyPhieuNhap")
+                            @Html.ActionLink("Báo cáo phiếu xuất theo kho", "LocTheoKho", "ThongTinPhieuXuat")
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            @Html.ActionLink("Báo cáo chi tiết phiếu xuất", "Find", "QuanLyPhieuXuat")
+                            @Html.ActionLink("Báo cáo chi tiết phiếu nhập theo thời gian", "Find", "ThongTinPhieuNhap")
                             <b class="arrow"></b>
                         </li>
 
                         <li class="">
-                            @Html.ActionLink("Báo cáo tổng giá trị đã cấp", "LocTongGiaTriDaCap", "QuanLyPhieuXuat")
+                            @Html.ActionLink("Báo cáo chi tiết phiếu xuất theo thời gian", "Find", "ThongTinPhieuXuat")
                             <b class="arrow"></b>
                         </li>
 
-                        @*<li class="">
-                                <a href="tonghopkehoachnhapxuattheocacdonvi.html">
-                                    <i class="menu-icon fa fa-caret-right"></i> Quản Lý Tổng Kế Hoạch
-                                    Nhập Xuất Theo Các Đơn Vị
-                                </a> <b class="arrow"></b>
-                            </li>*@
+                        <li class="">
+                            @Html.ActionLink("Báo cáo tổng giá trị đã cấp", "LocTongGiaTriDaCap", "ThongTinPhieuXuat")
+                            <b class="arrow"></b>
+                        </li>
+
                     </ul>
                 </li>
 

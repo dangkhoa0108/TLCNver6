@@ -48,6 +48,9 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -230,7 +233,42 @@
     <Compile Include="Models\ThongTinPN.cs" />
     <Compile Include="Models\ThongTinPX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\BaoCaoChiTietHangNhap.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaoCaoChiTietHangNhap.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BaoCaoChiTietHangXuat.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaoCaoChiTietHangXuat.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CrystalReportBaoCaoChiTietHangNhap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBaoCaoChiTietHangNhap.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CrystalReportBaoCaoChiTietHangXuat.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBaoCaoChiTietHangXuat.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CrystalReportBaoCaoTongGiaTriDaCap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportBaoCaoTongGiaTriDaCap.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\LocTongGiaTriDaCap.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocTongGiaTriDaCap.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\BaoCaoChiTietPhieuNhapTheoThoiGian.cs" />
+    <Compile Include="ViewModel\BaoCaoChiTietPhieuXuatTheoThoiGian.cs" />
     <Compile Include="ViewModel\ChiTietHopDongViewModel.cs" />
     <Compile Include="ViewModel\ChiTietPhieuNhapViewModel.cs" />
     <Compile Include="ViewModel\ChiTietPhieuXuatViewModel.cs" />
@@ -265,6 +303,39 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Reports\BaoCaoChiTietHangNhap.xsc">
+      <DependentUpon>BaoCaoChiTietHangNhap.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\BaoCaoChiTietHangNhap.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BaoCaoChiTietHangNhap.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\BaoCaoChiTietHangNhap.xss">
+      <DependentUpon>BaoCaoChiTietHangNhap.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\BaoCaoChiTietHangXuat.xsc">
+      <DependentUpon>BaoCaoChiTietHangXuat.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\BaoCaoChiTietHangXuat.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BaoCaoChiTietHangXuat.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\BaoCaoChiTietHangXuat.xss">
+      <DependentUpon>BaoCaoChiTietHangXuat.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\LocTongGiaTriDaCap.xsc">
+      <DependentUpon>LocTongGiaTriDaCap.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\LocTongGiaTriDaCap.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocTongGiaTriDaCap.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\LocTongGiaTriDaCap.xss">
+      <DependentUpon>LocTongGiaTriDaCap.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -363,6 +434,10 @@
     <Content Include="Views\QuanLyMatHang\Find.cshtml" />
     <Content Include="Views\QuanLyKho\Find.cshtml" />
     <Content Include="Views\ThongTinPhieuNhap\LocTheoDonVi.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\LocTheoKho.cshtml" />
+    <Content Include="Views\ThongTinPhieuNhap\Find.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\Find.cshtml" />
+    <Content Include="Views\ThongTinPhieuXuat\LocTongGiaTriDaCap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -374,6 +449,23 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\CrystalReportBaoCaoChiTietHangNhap.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBaoCaoChiTietHangNhap.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReportBaoCaoChiTietHangXuat.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBaoCaoChiTietHangXuat.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReportBaoCaoTongGiaTriDaCap.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportBaoCaoTongGiaTriDaCap.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

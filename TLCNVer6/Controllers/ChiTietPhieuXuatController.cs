@@ -22,6 +22,9 @@ namespace TLCNVer6.Controllers
             return View(chiTietPXes.ToList());
         }
 
+       
+
+
         // GET: ChiTietPhieuXuat/Details/5
         public ActionResult Details(int? ID)
         {

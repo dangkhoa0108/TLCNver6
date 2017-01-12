@@ -1,12 +1,15 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TLCNVer6.Models;
+using TLCNVer6.ViewModel;
 
 namespace TLCNVer6.Controllers
 {
@@ -21,19 +24,115 @@ namespace TLCNVer6.Controllers
             return View(thongTinPXes.ToList());
         }
 
-        // GET: ThongTinPhieuXuat/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult LocTongGiaTriDaCap()
         {
-            if (id == null)
+            ViewBag.DV = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ExportLTGT(string DV)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports/CrystalReportBaoCaoTongGiaTriDaCap.rpt")));
+            var select = (from TTPX in db.ThongTinPXes join CTPX in db.ChiTietPXes
+                             on TTPX.ID equals CTPX.IDPX
+                          join LG in db.Logins on TTPX.NguoiLap equals LG.ID
+                          join MH in db.MatHangs on CTPX.MaMatHang equals MH.MaMatHang
+                          join DVGN in db.DonViGiaoNhans on CTPX.MaDV equals DVGN.MaDV
+                          where (CTPX.MaDV == DV /*&& TTPX.NgayLap >= NgayLap && TTPX.NgayLap <= GiaTriDen*/)
+                          select new
+                          {
+                              MaPX = TTPX.MaPX ?? "No Value",
+                              Ngaylap = TTPX.NgayLap.ToString() ?? "No Value",
+                              GiaTriDen = TTPX.GiaTriDen.ToString() ?? "No Value",
+                              NguoiLap = LG.HoTen ?? "No Value",
+                              TenMatHang=MH.TenMatHang??"No Value",
+                              SoLuong = CTPX.SoLuong ?? 0,
+                              DonGia=CTPX.DonGia?? 0
+                          }).ToList();
+            rd.SetDataSource(select);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", "Báo cáo tổng giá trị đã cấp.pdf");
+        }
+
+        public ActionResult Find()
+        {
+            ViewBag.Kho = new SelectList(db.Khoes, "MaKho", "TenKho");
+            return View();
+        }
+
+
+        public ActionResult LocTheoKho()
+        {
+            ViewBag.Kho = new SelectList(db.Khoes, "MaKho", "TenKho");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Export(string Kho)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports/CrystalReportBaoCaoChiTietHangXuat.rpt")));
+            var select = (from TTPX in db.ThongTinPXes
+                          join K in db.Khoes
+                             on TTPX.MaKho equals K.MaKho
+                          join LG in db.Logins on TTPX.NguoiLap equals LG.ID
+                          where TTPX.MaKho == Kho
+                          select new
+                          {
+                              MaPX = TTPX.MaPX ?? "No Value",
+                              Ngaylap = TTPX.NgayLap.ToString() ?? "No Value",
+                              GiaTriDen = TTPX.GiaTriDen.ToString() ?? "No Value",
+                              NguoiLap = LG.HoTen ?? "No Value",
+                              MaKho = K.TenKho ?? "No Value"
+                          }).ToList();
+            rd.SetDataSource(select);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", "Báo cáo chi tiết phiếu xuất theo kho.pdf");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult Details(string Kho, DateTime? NgayLap, DateTime? GiaTriDen)
+        {
+            List<BaoCaoChiTietPhieuXuatTheoThoiGian> model = new List<BaoCaoChiTietPhieuXuatTheoThoiGian>();
+            var join = (from TTPX in db.ThongTinPXes
+                        join K in db.Khoes
+                        on TTPX.MaKho equals K.MaKho
+                        join DN in db.Logins
+                        on TTPX.NguoiLap equals DN.ID
+                        where (TTPX.NgayLap >= NgayLap && TTPX.NgayLap <= GiaTriDen)
+                        where (K.MaKho == Kho)
+                        select new
+                        {
+                            maPX = TTPX.MaPX,
+                            ngayLap = TTPX.NgayLap,
+                            giaTriDen = TTPX.GiaTriDen,
+                            nguoiLapPhieu = DN.HoTen,
+                            tenKho = K.TenKho,
+                        }).ToList();
+            foreach (var item in join)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                model.Add(new BaoCaoChiTietPhieuXuatTheoThoiGian()
+                {
+                    MaPX = item.maPX,
+                    NgayLap = item.ngayLap,
+                    GiaTriDen = item.giaTriDen,
+                    NguoiLap = item.nguoiLapPhieu,
+                    TenKho = item.tenKho,
+                });
             }
-            ThongTinPX thongTinPX = db.ThongTinPXes.Find(id);
-            if (thongTinPX == null)
-            {
-                return HttpNotFound();
-            }
-            return View(thongTinPX);
+            return View(model);
         }
 
         // GET: ThongTinPhieuXuat/Create

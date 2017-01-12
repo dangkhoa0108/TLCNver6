@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LocTongGiaTriDaCap" targetNamespace="http://tempuri.org/LocTongGiaTriDaCap.xsd" xmlns:mstns="http://tempuri.org/LocTongGiaTriDaCap.xsd" xmlns="http://tempuri.org/LocTongGiaTriDaCap.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LocTongGiaTriDaCap" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LocTongGiaTriDaCap" msprop:Generator_UserDSName="LocTongGiaTriDaCap">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LocTongGiaTriDaCap" msprop:Generator_TableClassName="LocTongGiaTriDaCapDataTable" msprop:Generator_TableVarName="tableLocTongGiaTriDaCap" msprop:Generator_TablePropName="_LocTongGiaTriDaCap" msprop:Generator_RowDeletingName="LocTongGiaTriDaCapRowDeleting" msprop:Generator_RowChangingName="LocTongGiaTriDaCapRowChanging" msprop:Generator_RowEvHandlerName="LocTongGiaTriDaCapRowChangeEventHandler" msprop:Generator_RowDeletedName="LocTongGiaTriDaCapRowDeleted" msprop:Generator_UserTableName="LocTongGiaTriDaCap" msprop:Generator_RowChangedName="LocTongGiaTriDaCapRowChanged" msprop:Generator_RowEvArgName="LocTongGiaTriDaCapRowChangeEvent" msprop:Generator_RowClassName="LocTongGiaTriDaCapRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaPX" msprop:Generator_ColumnVarNameInTable="columnMaPX" msprop:Generator_ColumnPropNameInRow="MaPX" msprop:Generator_ColumnPropNameInTable="MaPXColumn" msprop:Generator_UserColumnName="MaPX" type="xs:string" minOccurs="0" />
+              <xs:element name="NgayLap" msprop:Generator_ColumnVarNameInTable="columnNgayLap" msprop:Generator_ColumnPropNameInRow="NgayLap" msprop:Generator_ColumnPropNameInTable="NgayLapColumn" msprop:Generator_UserColumnName="NgayLap" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GiaTriDen" msprop:Generator_ColumnVarNameInTable="columnGiaTriDen" msprop:Generator_ColumnPropNameInRow="GiaTriDen" msprop:Generator_ColumnPropNameInTable="GiaTriDenColumn" msprop:Generator_UserColumnName="GiaTriDen" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NguoiLap" msprop:Generator_ColumnVarNameInTable="columnNguoiLap" msprop:Generator_ColumnPropNameInRow="NguoiLap" msprop:Generator_ColumnPropNameInTable="NguoiLapColumn" msprop:Generator_UserColumnName="NguoiLap" type="xs:string" minOccurs="0" />
+              <xs:element name="TenMatHang" msprop:Generator_ColumnVarNameInTable="columnTenMatHang" msprop:Generator_ColumnPropNameInRow="TenMatHang" msprop:Generator_ColumnPropNameInTable="TenMatHangColumn" msprop:Generator_UserColumnName="TenMatHang" type="xs:string" minOccurs="0" />
+              <xs:element name="SoLuong" msprop:Generator_ColumnVarNameInTable="columnSoLuong" msprop:Generator_ColumnPropNameInRow="SoLuong" msprop:Generator_ColumnPropNameInTable="SoLuongColumn" msprop:Generator_UserColumnName="SoLuong" type="xs:int" minOccurs="0" />
+              <xs:element name="DonGia" msprop:Generator_ColumnVarNameInTable="columnDonGia" msprop:Generator_ColumnPropNameInRow="DonGia" msprop:Generator_ColumnPropNameInTable="DonGiaColumn" msprop:Generator_UserColumnName="DonGia" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

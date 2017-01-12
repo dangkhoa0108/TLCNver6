@@ -1,59 +1,95 @@
-﻿@model TLCNVer6.Models.ThongTinPN
+﻿@model List<TLCNVer6.ViewModel.BaoCaoChiTietPhieuNhapTheoThoiGian>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon glyphicon glyphicon-info-sign"></i> <a href="#">
+                Báo cáo
+            </a>
 
-<div>
-    <h4>ThongTinPN</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DonViGiaoNhan.TenDV)
-        </dt>
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Báo cáo chi tiết phiếu nhập theo thời gian
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12"></div>
+                <!-- /.span -->
+            </div>
+            <!-- /.row -->
 
-        <dd>
-            @Html.DisplayFor(model => model.DonViGiaoNhan.TenDV)
-        </dd>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="header smaller lighter blue">
+                        <i class="ace-icon fa fa-info"></i>
+                        Báo cáo chi tiết phiếu nhập theo thời gian
+                    </h3>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Login.Username)
-        </dt>
+                    <div class="">
+                        <div class="pull-right tableTools-container"></div>
+                    </div>
+                    <div class="table-header">Chi tiết hàng nhập</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Login.Username)
-        </dd>
+                    <!-- div.table-responsive -->
+                    <!-- div.dataTables_borderWrap -->
+                    <div>
+                        <table id=""
+                               class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="center">
+                                        Mã  phiếu nhập
+                                    </th>
+                                    <th>Ngày tạo phiếu</th>
+                                    <th>Giá trị phiếu</th>
+                                    <th>Người lập phiếu</th>
+                                    <th>Tên đơn vị</th>
+                                </tr>
+                            </thead>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaPN)
-        </dt>
+                            <tbody>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaPN)
-        </dd>
+                                @if (Model == null)
+                                {
+                                <tr>
+                                    <td>    không có giá trị thỏa!!!</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayLap)
-        </dt>
+                                </tr>
+                                }
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayLap)
-        </dd>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="center">
+                                            @item.MaPN
+                                        </td>
+                                        <td>
+                                            @item.NgayLap
+                                        </td>
+                                        <td>@item.GiaTriDen</td>
+                                        <td class="hidden-480">@item.NguoiLap</td>
+                                        <td>@item.TenDV</td>
+           
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaTriDen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiaTriDen)
-        </dd>
-
-    </dl>
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

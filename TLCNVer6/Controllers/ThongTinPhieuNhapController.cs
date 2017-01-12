@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,12 +24,45 @@ namespace TLCNVer6.Controllers
             return View(thongTinPNs.ToList());
         }
 
-        // GET: ThongTinPhieuNhap/Details/5
-        public ActionResult Details(string MaPN)
+        [HttpPost]
+        public ActionResult Details(string DVGN, DateTime? NgayLap, DateTime? GiaTriDen)
         {
-          
+            List<BaoCaoChiTietPhieuNhapTheoThoiGian> model = new List<BaoCaoChiTietPhieuNhapTheoThoiGian>();
+            var join = (from TTPN in db.ThongTinPNs
+                        join DV in db.DonViGiaoNhans
+                        on TTPN.MaDonVi equals DV.MaDV
+                        join DN in db.Logins
+                        on TTPN.NguoiLap equals DN.ID
+                        where (TTPN.NgayLap >= NgayLap && TTPN.NgayLap <= GiaTriDen)
+                        where (DV.MaDV == DVGN)
+                        select new
+                        {
+                            maPN = TTPN.MaPN,
+                            ngayLap = TTPN.NgayLap,
+                            giaTriDen = TTPN.GiaTriDen,
+                            nguoiLapPhieu = DN.HoTen,
+                            tenDV = DV.TenDV,
+                        }).ToList();
+            foreach (var item in join)
+            {
+                model.Add(new BaoCaoChiTietPhieuNhapTheoThoiGian()
+                {
+                    MaPN = item.maPN,
+                    NgayLap = item.ngayLap,
+                    GiaTriDen = item.giaTriDen,
+                    NguoiLap = item.nguoiLapPhieu,
+                    TenDV = item.tenDV,
+                });
+            }
+            return View(model);
+        }
+         
+        public ActionResult Find()
+        {
+            ViewBag.DVGN = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
             return View();
         }
+
 
         public ActionResult LocTheoDonVi()
         {
@@ -37,9 +72,29 @@ namespace TLCNVer6.Controllers
 
 
         [HttpPost]
-        public ActionResult Export()
+        public ActionResult Export(string DonVi)
         {
-
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports/CrystalReportBaoCaoChiTietHangNhap.rpt")));
+            var select = (from TTPN in db.ThongTinPNs
+                          join DVGN in db.DonViGiaoNhans
+                             on TTPN.MaDonVi equals DVGN.MaDV
+                          join LG in db.Logins on TTPN.NguoiLap equals LG.ID
+                          where TTPN.MaDonVi == DonVi
+                          select new
+                          {
+                              MaPN = TTPN.MaPN ?? "No Value",
+                              Ngaylap = TTPN.NgayLap.ToString() ?? "No Value",
+                              GiaTriDen = TTPN.GiaTriDen.ToString() ?? "No Value",
+                              NguoiLap = LG.HoTen ?? "No Value",
+                              MaDonVI=DVGN.TenDV?? "No Value"
+                          }).ToList();
+            rd.SetDataSource(select);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", "Báo cáo chi tiết phiếu nhập theo đơn vị.pdf");
         }
 
         // GET: ThongTinPhieuNhap/Create
