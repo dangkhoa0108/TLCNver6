@@ -235,6 +235,7 @@
     <Compile Include="ViewModel\ChiTietPhieuNhapViewModel.cs" />
     <Compile Include="ViewModel\ChiTietPhieuXuatViewModel.cs" />
     <Compile Include="ViewModel\HopDongViewModel.cs" />
+    <Compile Include="ViewModel\KiemKeHangHoaViewModel.cs" />
     <Compile Include="ViewModel\PhieuNhapViewModel.cs" />
     <Compile Include="ViewModel\PhieuXuatViewModel.cs" />
   </ItemGroup>
@@ -359,6 +360,9 @@
     <Content Include="Views\ChiTietHopDong\Details.cshtml" />
     <Content Include="Views\ChiTietHopDong\Edit.cshtml" />
     <Content Include="Views\ChiTietHopDong\Index.cshtml" />
+    <Content Include="Views\QuanLyMatHang\Find.cshtml" />
+    <Content Include="Views\QuanLyKho\Find.cshtml" />
+    <Content Include="Views\ThongTinPhieuNhap\LocTheoDonVi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

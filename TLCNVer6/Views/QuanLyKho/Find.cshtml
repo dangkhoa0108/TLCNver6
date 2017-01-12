@@ -1,0 +1,47 @@
+﻿@model TLCNVer6.Models.Kho
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa-pencil-square-o"></i> <a href="#">
+                Kiểm kê
+            </a>
+
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Lọc theo điều kiện
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-search" aria-hidden="true"></i> Kiểm kê vật tư hàng hóa
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Details", "QuanLyKho", FormMethod.Post))
+                    {
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaKho, "Tên kho")
+                            @Html.DropDownList("Kho", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaKho, "", new { @class = "text-danger" })
+                        </div>
+                        <input class="btn btn-primary " type="submit" value="Submit" />
+                        <button type="reset" class="btn btn-default">Bỏ qua</button>
+
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

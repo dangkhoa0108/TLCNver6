@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TLCNVer6.Models;
+using TLCNVer6.ViewModel;
 
 namespace TLCNVer6.Controllers
 {
@@ -21,19 +22,47 @@ namespace TLCNVer6.Controllers
             return View(matHangs.ToList());
         }
 
-        // GET: QuanLyMatHang/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Find()
         {
-            if (id == null)
+            ViewBag.Kho = new SelectList(db.Khoes, "MaKho", "TenKho");
+            ViewBag.LoaiMH = new SelectList(db.LoaiMatHangs, "MaLoaiMH", "TenLoaiMH");
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Details(string Kho, string LoaiMH)
+        {
+            List<KiemKeHangHoaViewModel> model = new List<KiemKeHangHoaViewModel>();
+            var join = (from K in db.Khoes
+                        join MH in db.MatHangs
+                        on K.MaKho equals MH.MaKho
+                        join LMH in db.LoaiMatHangs on
+                            MH.MaLoaiMH equals LMH.MaLoaiMH
+                        where
+                            (K.MaKho == Kho) && (LMH.MaLoaiMH == LoaiMH)
+                        select new
+                        {
+                            maMH = MH.MaMatHang,
+                            tenMH = MH.TenMatHang,
+                            tenLMH = LMH.TenLoaiMH,
+                            donViTinh = MH.DonViTinh,
+                            tenKho = K.TenKho,
+                            soLuong = MH.SoLuong
+                        }).ToList();
+            foreach(var item in join)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                model.Add(new KiemKeHangHoaViewModel()
+                {
+                    MaMatHang = item.maMH,
+                    TenMatHang = item.tenMH,
+                    TenLoaiMatHang = item.tenLMH,
+                    DonViTinh = item.donViTinh,
+                    TenKho = item.tenKho,
+                    SoLuong = item.soLuong
+                });
             }
-            MatHang matHang = db.MatHangs.Find(id);
-            if (matHang == null)
-            {
-                return HttpNotFound();
-            }
-            return View(matHang);
+            return View(model);
         }
 
         // GET: QuanLyMatHang/Create

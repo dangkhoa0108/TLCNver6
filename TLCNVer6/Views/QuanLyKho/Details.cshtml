@@ -1,35 +1,97 @@
-﻿@model TLCNVer6.Models.Kho
+﻿@model List<TLCNVer6.ViewModel.KiemKeHangHoaViewModel>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            <i class="ace-icon fa fa-pencil-square-o"></i> <a href="#">
+                Kiểm kê
+            </a>
 
-<div>
-    <h4>Kho</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiKho.TenLoaiKho)
-        </dt>
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Kiểm kê vật tư hàng hóa
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12"></div>
+                <!-- /.span -->
+            </div>
+            <!-- /.row -->
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiKho.TenLoaiKho)
-        </dd>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="header smaller lighter blue">
+                        <i class="ace-icon fa fa-info"></i>
+                        Kiểm kê vật tư hàng hóa
+                    </h3>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TenKho)
-        </dt>
+                    <div class="clearfix">
+                        <div class="pull-right tableTools-container"></div>
+                    </div>
+                    <div class="table-header">Danh sách vật tư</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenKho)
-        </dd>
+                    <!-- div.table-responsive -->
+                    <!-- div.dataTables_borderWrap -->
+                    <div>
+                        <table id="dynamic-table"
+                               class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace" /> <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th>Mã mặt hàng</th>
+                                    <th>Tên mặt hàng</th>
+                                    <th>Tên loại mặt hàng</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Tên kho</th>
+                                    <th>
+                                        <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                        Số lượng
+                                    </th>
+                                </tr>
+                            </thead>
 
-    </dl>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" /> <span class="lbl"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            @item.MaMatHang
+                                        </td>
+                                        <td>@item.TenMatHang</td>
+                                        <td>@item.TenLoaiMatHang</td>
+
+                                        <td class="hidden-480">@item.DonViTinh</td>
+                                        <td>@item.TenKho</td>
+                                        <td>@item.SoLuong</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKho }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

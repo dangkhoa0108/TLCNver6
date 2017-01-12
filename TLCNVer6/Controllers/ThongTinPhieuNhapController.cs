@@ -29,8 +29,18 @@ namespace TLCNVer6.Controllers
             return View();
         }
 
+        public ActionResult LocTheoDonVi()
+        {
+            ViewBag.DonVi = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
+            return View();
+        }
 
 
+        [HttpPost]
+        public ActionResult Export()
+        {
+
+        }
 
         // GET: ThongTinPhieuNhap/Create
         public ActionResult Create()

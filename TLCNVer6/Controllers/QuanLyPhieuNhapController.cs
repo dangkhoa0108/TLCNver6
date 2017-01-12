@@ -22,6 +22,7 @@ namespace TLCNVer6.Controllers
             return View();
         }
 
+
         [HttpPost]
         public JsonResult SaveOrder(PhieuNhapViewModel O)
         {
