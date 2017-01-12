@@ -8,6 +8,7 @@ using TLCNVer6.ViewModel;
 
 namespace TLCNVer6.Controllers
 {
+    [PhanQuyen]
     public class QuanLyHopDongController : Controller
     {
         private QuanLyKhoDuocPhamDbContext db = new QuanLyKhoDuocPhamDbContext();

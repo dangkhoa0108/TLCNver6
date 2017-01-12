@@ -13,6 +13,7 @@ using TLCNVer6.ViewModel;
 
 namespace TLCNVer6.Controllers
 {
+    [PhanQuyen]
     public class ThongTinPhieuNhapController : Controller
     {
         private QuanLyKhoDuocPhamDbContext db = new QuanLyKhoDuocPhamDbContext();

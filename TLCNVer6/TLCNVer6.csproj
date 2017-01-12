@@ -227,6 +227,7 @@
     <Compile Include="Models\LoaiMatHang.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MatHang.cs" />
+    <Compile Include="Models\PhanQuyen.cs" />
     <Compile Include="Models\QuanLyKhoDuocPhamDbContext.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\ThongTinHopDong.cs" />

@@ -75,15 +75,17 @@
                     <span class="error">Đơn giá không được trống</span>
                 </td>
                 <td>
-                    <input type="button" id="add" value="add" />
+                    <input class="btn btn-sm btn-warning ace-icon fa fa-times" style="height:25px" type="button" id="add" value="add" />
                 </td>
             </tr>
         </table>
         <div id="orderItems" class="tablecontainer">
 
         </div>
-        <div style="padding:10px 0px; text-align:right">
-            <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+        <div  style="padding:10px 0px; text-align:right">
+            <input class="btn btn-sm btn-info ace-icon fa fa-times" id="submit" type="button" value="Save" style="padding:10px 20px" />
+            @Html.ActionLink("Trở lại", "Index", new { controller = "ThongTinHopDong" },
+                                                             new { @class = "btn btn-sm btn-danger ace-icon fa fa-times", @style = "padding:10px 20px" })
         </div>
     </div>
 </div>

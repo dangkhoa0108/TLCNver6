@@ -10,6 +10,7 @@ using TLCNVer6.Models;
 
 namespace TLCNVer6.Controllers
 {
+    [PhanQuyen]
     public class QuanLyLoaiMatHangController : Controller
     {
         private QuanLyKhoDuocPhamDbContext db = new QuanLyKhoDuocPhamDbContext();
