@@ -17,8 +17,16 @@ namespace TLCNVer6.Controllers
         // GET: ThongTinHopDong
         public ActionResult Index()
         {
-            var thongTinHopDongs = db.ThongTinHopDongs.Include(t => t.DonViGiaoNhan).Include(t => t.DonViGiaoNhan1).Include(t => t.Kho).Include(t => t.Login);
-            return View(thongTinHopDongs.ToList());
+            if(Session["Username"]!=null)
+            {
+                var thongTinHopDongs = db.ThongTinHopDongs.Include(t => t.DonViGiaoNhan).Include(t => t.DonViGiaoNhan1).Include(t => t.Kho).Include(t => t.Login);
+                return View(thongTinHopDongs.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
+            
         }
 
         // GET: ThongTinHopDong/Details/5
@@ -127,10 +135,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ThongTinHopDong thongTinHopDong = db.ThongTinHopDongs.Find(id);
-            db.ThongTinHopDongs.Remove(thongTinHopDong);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                ThongTinHopDong thongTinHopDong = db.ThongTinHopDongs.Find(id);
+                db.ThongTinHopDongs.Remove(thongTinHopDong);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

@@ -17,7 +17,14 @@ namespace TLCNVer6.Controllers
         // GET: QuanLyLoaiKho
         public ActionResult Index()
         {
-            return View(db.LoaiKhoes.ToList());
+            if(Session["Username"]!=null)
+            {
+                return View(db.LoaiKhoes.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
         }
 
         // GET: QuanLyLoaiKho/Details/5
@@ -109,10 +116,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            LoaiKho loaiKho = db.LoaiKhoes.Find(id);
-            db.LoaiKhoes.Remove(loaiKho);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                LoaiKho loaiKho = db.LoaiKhoes.Find(id);
+                db.LoaiKhoes.Remove(loaiKho);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

@@ -29,13 +29,13 @@
                     <span class="error">Giá trị không được trống</span>
                 </td>
             </tr>
-            <tr>
+            @*<tr>
                 <td>Người lập &nbsp;</td>
                 <td colspan="3">
                     <input id="NguoiLap" style="width:100%">
                     <span class="error">Người lập không được trống</span>
                 </td>
-            </tr>
+            </tr>*@
             <tr>
                 <td>Mã kho &nbsp;</td>
                 <td colspan="3">
@@ -84,6 +84,8 @@
         </div>
         <div style="padding:10px 0px; text-align:right">
             <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+            @Html.ActionLink("Trở lại", "Index", new { controller = "ThongTinPhieuXuat" },
+                                                             new { @class = "btn btn-sm btn-danger ace-icon fa fa-times", @style = "padding:10px 20px" })
         </div>
     </div>
 </div>
@@ -194,13 +196,13 @@
                     $('#GiaTriDen').siblings('span.error').css('visibility', 'hidden');
                 }
 
-                if ($('#NguoiLap').val().trim() == '') {
-                    $('#NguoiLap').siblings('span.error').css('visibility', 'visible');
-                    isAllValid = false;
-                }
-                else {
-                    $('#NguoiLap').siblings('span.error').css('visibility', 'hidden');
-                }
+                //if ($('#NguoiLap').val().trim() == '') {
+                //    $('#NguoiLap').siblings('span.error').css('visibility', 'visible');
+                //    isAllValid = false;
+                //}
+                //else {
+                //    $('#NguoiLap').siblings('span.error').css('visibility', 'hidden');
+                //}
                 if ($('#MaKho').val().trim() == '') {
                     $('#MaKho').siblings('span.error').css('visibility', 'visible');
                     isAllValid = false;
@@ -214,7 +216,7 @@
                         MaPX: $('#MaPX').val().trim(),
                         NgayLap: $('#NgayLap').val().trim(),
                         GiaTriDen: $('#GiaTriDen').val().trim(),
-                        NguoiLap: $('#NguoiLap').val().trim(),
+                        //NguoiLap: $('#NguoiLap').val().trim(),
                         MaKho: $('#MaKho').val().trim(),
                         //Sorry forgot to add Description Field
                         ChiTietPX : orderItems
@@ -238,7 +240,7 @@
                                 $('#MaPX').val('');
                                 $('#NgayLap').val('');
                                 $('#GiaTriDen').val('');
-                                $('#NguoiLap').val('');
+                                //$('#NguoiLap').val('');
                                 $('#MaDV').val('');
                                 $('#orderItems').empty();
                             }

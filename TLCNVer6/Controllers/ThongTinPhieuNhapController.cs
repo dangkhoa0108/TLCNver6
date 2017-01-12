@@ -20,8 +20,16 @@ namespace TLCNVer6.Controllers
         // GET: ThongTinPhieuNhap
         public ActionResult Index()
         {
-            var thongTinPNs = db.ThongTinPNs.Include(t => t.DonViGiaoNhan).Include(t => t.Login);
-            return View(thongTinPNs.ToList());
+            if (Session["Username"]!=null)
+            {
+                var thongTinPNs = db.ThongTinPNs.Include(t => t.DonViGiaoNhan).Include(t => t.Login);
+                return View(thongTinPNs.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
+            
         }
 
         [HttpPost]
@@ -96,33 +104,7 @@ namespace TLCNVer6.Controllers
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/pdf", "Báo cáo chi tiết phiếu nhập theo đơn vị.pdf");
         }
-
-        // GET: ThongTinPhieuNhap/Create
-        public ActionResult Create()
-        {
-            ViewBag.MaDonVi = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
-            ViewBag.NguoiLap = new SelectList(db.Logins, "ID", "Username");
-            return View();
-        }
-
-        // POST: ThongTinPhieuNhap/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaPN,NgayLap,GiaTriDen,NguoiLap,MaDonVi")] ThongTinPN thongTinPN)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ThongTinPNs.Add(thongTinPN);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.MaDonVi = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV", thongTinPN.MaDonVi);
-            ViewBag.NguoiLap = new SelectList(db.Logins, "ID", "Username", thongTinPN.NguoiLap);
-            return View(thongTinPN);
-        }
+     
 
         // GET: ThongTinPhieuNhap/Edit/5
         public ActionResult Edit(int? id)
@@ -179,10 +161,17 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ThongTinPN thongTinPN = db.ThongTinPNs.Find(id);
-            db.ThongTinPNs.Remove(thongTinPN);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                ThongTinPN thongTinPN = db.ThongTinPNs.Find(id);
+                db.ThongTinPNs.Remove(thongTinPN);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+           catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
         }
 
         protected override void Dispose(bool disposing)

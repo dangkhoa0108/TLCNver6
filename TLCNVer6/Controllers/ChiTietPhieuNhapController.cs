@@ -18,8 +18,16 @@ namespace TLCNVer6.Controllers
         // GET: ChiTietPhieuNhap
         public ActionResult Index()
         {
-            var chiTietPNs = db.ChiTietPNs.Include(c => c.Kho).Include(c => c.MatHang).Include(c => c.ThongTinPN);
-            return View(chiTietPNs.ToList());
+            if(Session["Username"]!=null)
+            {
+                var chiTietPNs = db.ChiTietPNs.Include(c => c.Kho).Include(c => c.MatHang).Include(c => c.ThongTinPN);
+                return View(chiTietPNs.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
+            
         }
 
         // GET: ChiTietPhieuNhap/Details/5
@@ -148,11 +156,19 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            int ID = Convert.ToInt32(Session["ID"]);
-            ChiTietPN chiTietPN = db.ChiTietPNs.Find(id);
-            db.ChiTietPNs.Remove(chiTietPN);
-            db.SaveChanges();
-            return RedirectToAction("Details", new { id = ID });
+            try
+            {
+                int ID = Convert.ToInt32(Session["ID"]);
+                ChiTietPN chiTietPN = db.ChiTietPNs.Find(id);
+                db.ChiTietPNs.Remove(chiTietPN);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = ID });
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

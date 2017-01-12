@@ -15,10 +15,18 @@ namespace TLCNVer6.Controllers
         // GET: QuanLyPhieuXuat
         public ActionResult Index()
         {
-            ViewBag.DonViGN = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
-            ViewBag.Kho = new SelectList(db.Khoes, "MaKho", "TenKho");
-            ViewBag.MatHang = new SelectList(db.MatHangs, "MaMatHang", "TenMatHang");
-            return View();
+            if(Session["Username"]!=null)
+            {
+                ViewBag.DonViGN = new SelectList(db.DonViGiaoNhans, "MaDV", "TenDV");
+                ViewBag.Kho = new SelectList(db.Khoes, "MaKho", "TenKho");
+                ViewBag.MatHang = new SelectList(db.MatHangs, "MaMatHang", "TenMatHang");
+                return View();
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
+            
         }
 
         [HttpPost]
@@ -36,6 +44,7 @@ namespace TLCNVer6.Controllers
                         // i.TotalAmount = 
                         order.ChiTietPXes.Add(i);
                     }
+                    order.NguoiLap = Session["IDU"].ToString();
                     dc.ThongTinPXes.Add(order);
                     dc.SaveChanges();
                     status = true;
@@ -48,76 +57,5 @@ namespace TLCNVer6.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
-        // GET: QuanLyPhieuXuat/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: QuanLyPhieuXuat/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: QuanLyPhieuXuat/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: QuanLyPhieuXuat/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: QuanLyPhieuXuat/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: QuanLyPhieuXuat/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: QuanLyPhieuXuat/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

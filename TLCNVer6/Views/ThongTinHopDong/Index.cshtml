@@ -58,7 +58,18 @@
                                 {
                                     <tr>
                                         <td>@item.MaHD</td>
-                                        <td>@item.TinhChat</td>
+                                        @if ((@item.TinhChat == "Nhập"))
+                                        {
+                                            <td class="hidden-480 center">
+                                                <span class="label label label-success">@item.TinhChat</span>
+                                            </td>
+                                        }
+                                        @if ((@item.TinhChat == "Xuất"))
+                                        {
+                                            <td class="hidden-480 center">
+                                                <span class="label label label-warning">@item.TinhChat</span>
+                                            </td>
+                                        }
                                         <td>@item.Kho.TenKho</td>
                                         <td>@item.DonViGiaoNhan.TenDV</td>
                                         <td>@item.NgayKi</td>

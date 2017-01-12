@@ -17,7 +17,14 @@ namespace TLCNVer6.Controllers
         // GET: QuanLyLoaiMatHang
         public ActionResult Index()
         {
-            return View(db.LoaiMatHangs.ToList());
+            if(Session["Username"]!=null)
+            {
+                return View(db.LoaiMatHangs.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
         }
 
         // GET: QuanLyLoaiMatHang/Details/5
@@ -109,10 +116,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            LoaiMatHang loaiMatHang = db.LoaiMatHangs.Find(id);
-            db.LoaiMatHangs.Remove(loaiMatHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                LoaiMatHang loaiMatHang = db.LoaiMatHangs.Find(id);
+                db.LoaiMatHangs.Remove(loaiMatHang);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

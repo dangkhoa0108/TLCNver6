@@ -20,8 +20,16 @@ namespace TLCNVer6.Controllers
         // GET: ThongTinPhieuXuat
         public ActionResult Index()
         {
-            var thongTinPXes = db.ThongTinPXes.Include(t => t.Kho).Include(t => t.Login);
-            return View(thongTinPXes.ToList());
+            if(Session["Username"]!=null)
+            {
+                var thongTinPXes = db.ThongTinPXes.Include(t => t.Kho).Include(t => t.Login);
+                return View(thongTinPXes.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
+            
         }
 
         public ActionResult LocTongGiaTriDaCap()
@@ -136,31 +144,7 @@ namespace TLCNVer6.Controllers
         }
 
         // GET: ThongTinPhieuXuat/Create
-        public ActionResult Create()
-        {
-            ViewBag.MaKho = new SelectList(db.Khoes, "MaKho", "TenKho");
-            ViewBag.NguoiLap = new SelectList(db.Logins, "ID", "Username");
-            return View();
-        }
-
-        // POST: ThongTinPhieuXuat/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaPX,NgayLap,GiaTriDen,NguoiLap,MaKho")] ThongTinPX thongTinPX)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ThongTinPXes.Add(thongTinPX);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.MaKho = new SelectList(db.Khoes, "MaKho", "TenKho", thongTinPX.MaKho);
-            ViewBag.NguoiLap = new SelectList(db.Logins, "ID", "Username", thongTinPX.NguoiLap);
-            return View(thongTinPX);
-        }
+       
 
         // GET: ThongTinPhieuXuat/Edit/5
         public ActionResult Edit(int? id)
@@ -217,10 +201,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ThongTinPX thongTinPX = db.ThongTinPXes.Find(id);
-            db.ThongTinPXes.Remove(thongTinPX);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                ThongTinPX thongTinPX = db.ThongTinPXes.Find(id);
+                db.ThongTinPXes.Remove(thongTinPX);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

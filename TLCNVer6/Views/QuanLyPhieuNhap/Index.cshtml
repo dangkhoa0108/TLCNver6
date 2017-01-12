@@ -1,6 +1,6 @@
 ﻿@model Tuple<TLCNVer6.Models.ThongTinPN, TLCNVer6.Models.ChiTietPN>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thêm phiếu nhập";
     Layout = Layout = "~/Views/Shared/_Layout2.cshtml"; ;
 }
 
@@ -28,13 +28,13 @@
                     <span class="error">Giá trị không được trống</span>
                 </td>
             </tr>
-            <tr>
+            @*<tr>
                 <td>Người lập &nbsp;</td>
                 <td colspan="3">
                     <input id="NguoiLap" style="width:100%">
                     <span class="error">Người lập không được trống</span>
                 </td>
-            </tr>
+            </tr>*@
             <tr>
                 <td>Mã đơn vị &nbsp;</td>
                 <td colspan="3">
@@ -83,7 +83,10 @@
         </div>
         <div style="padding:10px 0px; text-align:right">
             <input id="submit" type="button" value="Save" style="padding:10px 20px" />
+            @Html.ActionLink("Trở lại", "Index", new { controller = "ThongTinPhieuNhap" },
+                                                             new { @class = "btn btn-sm btn-danger ace-icon fa fa-times", @style= "padding:10px 20px"  })
         </div>
+        
     </div>
 </div>
 
@@ -193,13 +196,13 @@
                     $('#GiaTriDen').siblings('span.error').css('visibility', 'hidden');
                 }
 
-                if ($('#NguoiLap').val().trim() == '') {
-                    $('#NguoiLap').siblings('span.error').css('visibility', 'visible');
-                    isAllValid = false;
-                }
-                else {
-                    $('#NguoiLap').siblings('span.error').css('visibility', 'hidden');
-                }
+                //if ($('#NguoiLap').val().trim() == '') {
+                //    $('#NguoiLap').siblings('span.error').css('visibility', 'visible');
+                //    isAllValid = false;
+                //}
+                //else {
+                //    $('#NguoiLap').siblings('span.error').css('visibility', 'hidden');
+                //}
                 if ($('#MaDV').val().trim() == '') {
                     $('#MaDV').siblings('span.error').css('visibility', 'visible');
                     isAllValid = false;
@@ -213,13 +216,13 @@
                         MaPN: $('#MaPN').val().trim(),
                         NgayLap: $('#NgayLap').val().trim(),
                         GiaTriDen: $('#GiaTriDen').val().trim(),
-                        NguoiLap: $('#NguoiLap').val().trim(),
+                        //NguoiLap: $('#NguoiLap').val().trim(),
                         MaDV: $('#MaDV').val().trim(),
                         //Sorry forgot to add Description Field
                         ChiTietPN : orderItems
                     }
 
-                    $(this).val('Please wait...');
+                    $(this).val('Xin chờ');
 
                     $.ajax({
                         url: '/QuanLyPhieuNhap/SaveOrder',
@@ -231,18 +234,18 @@
                             //check is successfully save to database
                             if (d.status == true) {
                                 //will send status from server side
-                                alert('Successfully done.');
+                                alert('Lưu hoàn tất.');
                                 //clear form
                                 orderItems = [];
                                 $('#MaPN').val('');
                                 $('#NgayLap').val('');
                                 $('#GiaTriDen').val('');
-                                $('#NguoiLap').val('');
+                                //$('#NguoiLap').val('');
                                 $('#MaDV').val('');
                                 $('#orderItems').empty();
                             }
                             else {
-                                alert('Failed');
+                                alert('Lỗi');
                             }
                             $('#submit').val('Save');
                         },

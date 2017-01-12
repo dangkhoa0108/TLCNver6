@@ -17,7 +17,14 @@ namespace TLCNVer6.Controllers
         // GET: QuanLyDVGNhan
         public ActionResult Index()
         {
-            return View(db.DonViGiaoNhans.ToList());
+            if(Session["Username"]!=null)
+            {
+                return View(db.DonViGiaoNhans.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
         }
 
         // GET: QuanLyDVGNhan/Details/5
@@ -109,10 +116,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            DonViGiaoNhan donViGiaoNhan = db.DonViGiaoNhans.Find(id);
-            db.DonViGiaoNhans.Remove(donViGiaoNhan);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                DonViGiaoNhan donViGiaoNhan = db.DonViGiaoNhans.Find(id);
+                db.DonViGiaoNhans.Remove(donViGiaoNhan);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

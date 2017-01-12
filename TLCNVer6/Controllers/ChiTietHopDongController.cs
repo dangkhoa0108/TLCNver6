@@ -18,8 +18,15 @@ namespace TLCNVer6.Controllers
         // GET: ChiTietHopDong
         public ActionResult Index()
         {
-            var chiTietHDs = db.ChiTietHDs.Include(c => c.MatHang).Include(c => c.ThongTinHopDong);
-            return View(chiTietHDs.ToList());
+            if (Session["Username"] != null)
+            {
+                var chiTietHDs = db.ChiTietHDs.Include(c => c.MatHang).Include(c => c.ThongTinHopDong);
+                return View(chiTietHDs.ToList());
+            }
+            else
+            {
+                return Redirect("~/Login/Index");
+            }
         }
 
         // GET: ChiTietHopDong/Details/5
@@ -141,11 +148,19 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            int ID = Convert.ToInt32(Session["ID"]);
-            ChiTietHD chiTietHD = db.ChiTietHDs.Find(id);
-            db.ChiTietHDs.Remove(chiTietHD);
-            db.SaveChanges();
-            return RedirectToAction("Details", new { id = ID });
+            try
+            {
+                int ID = Convert.ToInt32(Session["ID"]);
+                ChiTietHD chiTietHD = db.ChiTietHDs.Find(id);
+                db.ChiTietHDs.Remove(chiTietHD);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = ID });
+            }
+            catch(Exception)
+            {
+                return Redirect("~/Login/DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

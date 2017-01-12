@@ -41,7 +41,7 @@ namespace TLCNVer6.Controllers
 
         public ActionResult CapNhatPass()
         {
-            string userID = (Session["ID"].ToString());
+            string userID = (Session["IDU"].ToString());
             Login user = db.Logins.SingleOrDefault(x => x.ID == userID);
 
             string PassOld = Request.Form["txtPassOld"].ToString();
@@ -62,7 +62,7 @@ namespace TLCNVer6.Controllers
         }
         public ActionResult CapNhatPhone()
         {
-            string userID = (Session["ID"].ToString());
+            string userID = (Session["IDU"].ToString());
             Login user = db.Logins.SingleOrDefault(x => x.ID == userID);
             string phone = Request.Form["txtPhone"].ToString();
             user.SoDT = phone;
@@ -74,7 +74,7 @@ namespace TLCNVer6.Controllers
         }
         public ActionResult CapNhatName()
         {
-            string userID = (Session["ID"].ToString());
+            string userID = (Session["IDU"].ToString());
             Login user = db.Logins.SingleOrDefault(x => x.ID == userID);
             string name = Request.Form["nickname_new"].ToString();
             user.HoTen = name;
@@ -87,7 +87,7 @@ namespace TLCNVer6.Controllers
 
         public ActionResult CapNhatDiaChi()
         {
-            string userID = (Session["ID"].ToString());
+            string userID = (Session["IDU"].ToString());
             Login user = db.Logins.SingleOrDefault(x => x.ID == userID);
             string diachi = Request.Form["address_new"].ToString();
             user.DiaChi = diachi;

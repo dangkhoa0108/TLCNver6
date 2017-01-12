@@ -17,7 +17,14 @@ namespace TLCNVer6.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View(db.Logins.ToList());
+            if (Session["Username"] != null)
+            {
+                return View(db.Logins.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Login()
@@ -70,7 +77,7 @@ namespace TLCNVer6.Controllers
                 var usr = db.Logins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password && u.Role == user.Role);
                 if (usr != null)
                 {
-                    Session["ID"] = usr.ID.ToString();
+                    Session["IDU"] = usr.ID.ToString();
                     Session["Username"] = usr.Username.ToString();
                     Session["HoTen"] = usr.HoTen.ToString();
                     Session["DiaChi"] = usr.DiaChi.ToString();
@@ -125,20 +132,6 @@ namespace TLCNVer6.Controllers
             {
                 return RedirectToAction("Login");
             }
-        }
-        // GET: Login/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Login login = db.Logins.Find(id);
-            if (login == null)
-            {
-                return HttpNotFound();
-            }
-            return View(login);
         }
 
         // GET: Login/Create
@@ -215,10 +208,18 @@ namespace TLCNVer6.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Login login = db.Logins.Find(id);
-            db.Logins.Remove(login);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Login login = db.Logins.Find(id);
+                db.Logins.Remove(login);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return RedirectToAction("DelError");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
