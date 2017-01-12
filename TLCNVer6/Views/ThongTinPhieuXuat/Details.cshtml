@@ -72,9 +72,9 @@
                                             @item.MaPX
                                         </td>
                                         <td>
-                                            @item.NgayLap
+                                            @(item.NgayLap.HasValue ? item.NgayLap.Value.ToString("dd/MM/yyyy") : "")
                                         </td>
-                                        <td>@item.GiaTriDen</td>
+                                        <td>@(item.GiaTriDen.HasValue ? item.GiaTriDen.Value.ToString("dd/MM/yyyy") : "")</td>
                                         <td class="hidden-480">@item.NguoiLap</td>
                                         <td>@item.TenKho</td>
 

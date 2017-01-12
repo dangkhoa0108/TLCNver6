@@ -72,7 +72,7 @@
                                         }
                                         <td>@item.Kho.TenKho</td>
                                         <td>@item.DonViGiaoNhan.TenDV</td>
-                                        <td>@item.NgayKi</td>
+                                        <td>@(item.NgayKi.HasValue ? item.NgayKi.Value.ToString("dd/MM/yyyy") : "")</td>
                                         <td>@item.Login.HoTen</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
