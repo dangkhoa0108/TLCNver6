@@ -59,7 +59,8 @@ namespace TLCNVer6.Controllers
                               NguoiLap = LG.HoTen ?? "No Value",
                               TenMatHang=MH.TenMatHang??"No Value",
                               SoLuong = CTPX.SoLuong ?? 0,
-                              DonGia=CTPX.DonGia?? 0
+                              DonGia=CTPX.DonGia?? 0,
+                              Sum=CTPX.Sum??0,
                           }).ToList();
             rd.SetDataSource(select);
             Response.Buffer = false;

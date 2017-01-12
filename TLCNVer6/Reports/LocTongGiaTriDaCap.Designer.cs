@@ -293,6 +293,8 @@ namespace TLCNVer6.Reports {
             
             private global::System.Data.DataColumn columnDonGia;
             
+            private global::System.Data.DataColumn columnSum;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public LocTongGiaTriDaCapDataTable() {
@@ -384,6 +386,14 @@ namespace TLCNVer6.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SumColumn {
+                get {
+                    return this.columnSum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace TLCNVer6.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LocTongGiaTriDaCapRow AddLocTongGiaTriDaCapRow(string MaPX, System.DateTime NgayLap, System.DateTime GiaTriDen, string NguoiLap, string TenMatHang, int SoLuong, int DonGia) {
+            public LocTongGiaTriDaCapRow AddLocTongGiaTriDaCapRow(string MaPX, System.DateTime NgayLap, System.DateTime GiaTriDen, string NguoiLap, string TenMatHang, int SoLuong, int DonGia, int Sum) {
                 LocTongGiaTriDaCapRow rowLocTongGiaTriDaCapRow = ((LocTongGiaTriDaCapRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaPX,
@@ -428,7 +438,8 @@ namespace TLCNVer6.Reports {
                         NguoiLap,
                         TenMatHang,
                         SoLuong,
-                        DonGia};
+                        DonGia,
+                        Sum};
                 rowLocTongGiaTriDaCapRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLocTongGiaTriDaCapRow);
                 return rowLocTongGiaTriDaCapRow;
@@ -458,6 +469,7 @@ namespace TLCNVer6.Reports {
                 this.columnTenMatHang = base.Columns["TenMatHang"];
                 this.columnSoLuong = base.Columns["SoLuong"];
                 this.columnDonGia = base.Columns["DonGia"];
+                this.columnSum = base.Columns["Sum"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -477,6 +489,8 @@ namespace TLCNVer6.Reports {
                 base.Columns.Add(this.columnSoLuong);
                 this.columnDonGia = new global::System.Data.DataColumn("DonGia", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDonGia);
+                this.columnSum = new global::System.Data.DataColumn("Sum", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSum);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_LocTongGiaTriDaCap");
                 this.ExtendedProperties.Add("Generator_UserTableName", "LocTongGiaTriDaCap");
             }
@@ -733,6 +747,22 @@ namespace TLCNVer6.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Sum {
+                get {
+                    try {
+                        return ((int)(this[this.tableLocTongGiaTriDaCap.SumColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Sum\' in table \'LocTongGiaTriDaCap\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLocTongGiaTriDaCap.SumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMaPXNull() {
                 return this.IsNull(this.tableLocTongGiaTriDaCap.MaPXColumn);
             }
@@ -813,6 +843,18 @@ namespace TLCNVer6.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDonGiaNull() {
                 this[this.tableLocTongGiaTriDaCap.DonGiaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSumNull() {
+                return this.IsNull(this.tableLocTongGiaTriDaCap.SumColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSumNull() {
+                this[this.tableLocTongGiaTriDaCap.SumColumn] = global::System.Convert.DBNull;
             }
         }
         
